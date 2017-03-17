@@ -12,6 +12,7 @@
         <module>test_web</module>
         <module>test_mysql</module>
         <module>test_ser</module>
+        <module>test_public</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

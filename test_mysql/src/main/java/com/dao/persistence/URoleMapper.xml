@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.mapper.URoleMapper">
+
+    <sql id="URoleBaseColumnSql">
+        id,
+        name,
+        type
+    </sql>
+
+    <sql id="URoleBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.id)">
+                    id = #{map.id}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.name)">
+                    AND name = #{map.name}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.type)">
+                    AND type = #{map.type}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="insertURole" parameterType="com.dao.entity.URole">
+        insert into u_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="null!=id">
+            id,
+        </if>
+        <if test="null!=name">
+            name,
+        </if>
+        <if test="null!=type">
+            type,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="null!=id">
+            #{id},
+        </if>
+        <if test="null!=name">
+            #{name},
+        </if>
+        <if test="null!=type">
+            #{type},
+        </if>
+        </trim>
+    </insert>
+
+    
+    <delete id="deleteURoleById" parameterType="Long">
+        DELETE FROM u_role WHERE id = #{id}
+    </delete>
+
+    <update id="updateURole" parameterType="com.dao.entity.URole">
+        UPDATE u_role
+        <set>
+            <if test="null!=name">
+                name = #{name} ,
+            </if>
+            <if test="null!=type">
+                type = #{type} ,
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="searchURoleByParams" parameterType="map" resultMap="URoleMap">
+        SELECT
+        <include refid="URoleBaseColumnSql"/>
+        FROM u_role
+        <include refid="URoleBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.dao.vo.URoleVo" id="URoleMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+</mapper>

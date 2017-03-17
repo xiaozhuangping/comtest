@@ -7,16 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="test_mysql" />
+        <module name="test_public" />
         <module name="test_ser" />
         <module name="test_web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="comtest" target="1.6" />
-      <module name="test_dao" target="1.6" />
       <module name="test_mysql" target="1.6" />
+      <module name="test_public" target="1.6" />
       <module name="test_ser" target="1.6" />
-      <module name="test_service" target="1.6" />
       <module name="test_web" target="1.6" />
     </bytecodeTargetLevel>
   </component>

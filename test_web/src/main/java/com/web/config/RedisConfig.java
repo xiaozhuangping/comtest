@@ -31,9 +31,9 @@ import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
  
-@Configuration
+/*@Configuration
 @PropertySource(value = "classpath:/application.properties")
-@EnableCaching
+@EnableCaching*/
 public class RedisConfig extends CachingConfigurerSupport {
     // @Value("${spring.redis.host}")
 	// private String host;

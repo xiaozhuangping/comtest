@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.mapper.UPermissionMapper">
+
+    <sql id="UPermissionBaseColumnSql">
+        id,
+        url,
+        name
+    </sql>
+
+    <sql id="UPermissionBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.id)">
+                    id = #{map.id}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.url)">
+                    AND url = #{map.url}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.name)">
+                    AND name = #{map.name}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="insertUPermission" parameterType="com.dao.entity.UPermission">
+        insert into u_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="null!=id">
+            id,
+        </if>
+        <if test="null!=url">
+            url,
+        </if>
+        <if test="null!=name">
+            name,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="null!=id">
+            #{id},
+        </if>
+        <if test="null!=url">
+            #{url},
+        </if>
+        <if test="null!=name">
+            #{name},
+        </if>
+        </trim>
+    </insert>
+
+    
+    <delete id="deleteUPermissionById" parameterType="Long">
+        DELETE FROM u_permission WHERE id = #{id}
+    </delete>
+
+    <update id="updateUPermission" parameterType="com.dao.entity.UPermission">
+        UPDATE u_permission
+        <set>
+            <if test="null!=url">
+                url = #{url} ,
+            </if>
+            <if test="null!=name">
+                name = #{name} ,
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="searchUPermissionByParams" parameterType="map" resultMap="UPermissionMap">
+        SELECT
+        <include refid="UPermissionBaseColumnSql"/>
+        FROM u_permission
+        <include refid="UPermissionBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.dao.vo.UPermissionVo" id="UPermissionMap">
+        <id column="id" property="id"/>
+        <result column="url" property="url"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+</mapper>

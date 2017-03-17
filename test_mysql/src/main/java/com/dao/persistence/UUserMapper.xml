@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.mapper.UUserMapper">
+
+    <sql id="UUserBaseColumnSql">
+        id,
+        nickname,
+        email,
+        pswd,
+        create_time,
+        last_login_time,
+        status
+    </sql>
+
+    <sql id="UUserBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.id)">
+                    id = #{map.id}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.nickname)">
+                    AND nickname = #{map.nickname}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.email)">
+                    AND email = #{map.email}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.pswd)">
+                    AND pswd = #{map.pswd}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.createTime)">
+                    AND create_time = #{map.createTime}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.lastLoginTime)">
+                    AND last_login_time = #{map.lastLoginTime}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.status)">
+                    AND status = #{map.status}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="insertUUser" parameterType="com.dao.entity.UUser">
+        insert into u_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="null!=id">
+            id,
+        </if>
+        <if test="null!=nickname">
+            nickname,
+        </if>
+        <if test="null!=email">
+            email,
+        </if>
+        <if test="null!=pswd">
+            pswd,
+        </if>
+        <if test="null!=createTime">
+            create_time,
+        </if>
+        <if test="null!=lastLoginTime">
+            last_login_time,
+        </if>
+        <if test="null!=status">
+            status,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="null!=id">
+            #{id},
+        </if>
+        <if test="null!=nickname">
+            #{nickname},
+        </if>
+        <if test="null!=email">
+            #{email},
+        </if>
+        <if test="null!=pswd">
+            #{pswd},
+        </if>
+        <if test="null!=createTime">
+            #{createTime},
+        </if>
+        <if test="null!=lastLoginTime">
+            #{lastLoginTime},
+        </if>
+        <if test="null!=status">
+            #{status},
+        </if>
+        </trim>
+    </insert>
+
+    
+    <delete id="deleteUUserById" parameterType="Long">
+        DELETE FROM u_user WHERE id = #{id}
+    </delete>
+
+    <update id="updateUUser" parameterType="com.dao.entity.UUser">
+        UPDATE u_user
+        <set>
+            <if test="null!=nickname">
+                nickname = #{nickname} ,
+            </if>
+            <if test="null!=email">
+                email = #{email} ,
+            </if>
+            <if test="null!=pswd">
+                pswd = #{pswd} ,
+            </if>
+            <if test="null!=createTime">
+                create_time = #{createTime} ,
+            </if>
+            <if test="null!=lastLoginTime">
+                last_login_time = #{lastLoginTime} ,
+            </if>
+            <if test="null!=status">
+                status = #{status} ,
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="searchUUserByParams" parameterType="map" resultMap="UUserMap">
+        SELECT
+        <include refid="UUserBaseColumnSql"/>
+        FROM u_user
+        <include refid="UUserBaseWhereSql"/>
+    </select>
+
+    <select id="searchUUserByName" parameterType="String" resultMap="UUserMap">
+        SELECT
+        <include refid="UUserBaseColumnSql"/>
+        FROM u_user
+        WHERE nickname = #{name}
+    </select>
+
+    <resultMap type="com.dao.vo.UUserVo" id="UUserMap">
+        <id column="id" property="id"/>
+        <result column="nickname" property="nickname"/>
+        <result column="email" property="email"/>
+        <result column="pswd" property="pswd"/>
+        <result column="create_time" property="createTime"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+</mapper>

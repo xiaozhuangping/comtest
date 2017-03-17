@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/comtest.iml" filepath="$PROJECT_DIR$/comtest.iml" />
       <module fileurl="file://$PROJECT_DIR$/test_mysql/test_mysql.iml" filepath="$PROJECT_DIR$/test_mysql/test_mysql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test_public/test_public.iml" filepath="$PROJECT_DIR$/test_public/test_public.iml" />
       <module fileurl="file://$PROJECT_DIR$/test_ser/test_ser.iml" filepath="$PROJECT_DIR$/test_ser/test_ser.iml" />
       <module fileurl="file://$PROJECT_DIR$/test_web/test_web.iml" filepath="$PROJECT_DIR$/test_web/test_web.iml" />
     </modules>

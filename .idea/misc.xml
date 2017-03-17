@@ -2,6 +2,7 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/test_mysql" />
+    <file type="web" url="file://$PROJECT_DIR$/test_public" />
     <file type="web" url="file://$PROJECT_DIR$/test_ser" />
     <file type="web" url="file://$PROJECT_DIR$/test_web" />
   </component>
